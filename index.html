@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -1383,15 +1383,25 @@
       if (entries.length > 0) {
         const list = document.createElement('div');
         list.className = 'reminders-list';
+        const nowKey = (new Date()).toISOString().slice(0,10);
         entries.sort((a,b) => a[0].localeCompare(b[0])).forEach(([k, v]) => {
           const item = document.createElement('div');
-          item.className = 'reminder-item';
+          const isFuture = k > nowKey;
+          item.className = 'reminder-item' + (isFuture ? ' futuro' : '');
           item.style.borderLeft = `3px solid ${tipoColor(v.tipo)}`;
           const parts = k.split('-');
+          // Build links html
+          const links = v.links || [];
+          const linksHtml = links.length > 0
+            ? links.map(lk => `<a href="${lk.url}" target="_blank" style="display:inline-block;margin-top:3px;font-size:0.65rem;color:#0064c8;font-weight:700;text-decoration:none;background:#e8f0fe;padding:1px 6px;border-radius:6px">📎 ${lk.name}</a>`).join(' ')
+            : '';
           item.innerHTML = `
             <span class="r-date">${parts[2]}/${parts[1]}</span>
             <span class="r-tipo" style="background:${tipoColor(v.tipo)}">${tipoLabel(v.tipo)}</span>
-            <span class="r-text">${v.reminder || ''}</span>
+            <div style="flex:1;min-width:0">
+              <span class="r-text">${v.reminder || ''}</span>
+              ${linksHtml ? '<div style="margin-top:2px">' + linksHtml + '</div>' : ''}
+            </div>
             <button class="r-del" title="Eliminar">✕</button>
           `;
           item.querySelector('.r-del').onclick = (e) => {
@@ -1547,24 +1557,29 @@
     MATERIAS.forEach(mat => {
       const ms = getMS(mat.id);
       Object.entries(ms).forEach(([k, v]) => {
-        if (v.marked) allEvents.push({ key: k, mat, tipo: v.tipo, reminder: v.reminder });
+        if (v.marked) allEvents.push({ key: k, mat, tipo: v.tipo, reminder: v.reminder, links: v.links || [] });
       });
     });
     allEvents.sort((a,b) => a.key.localeCompare(b.key));
 
+    const nowKey2 = (new Date()).toISOString().slice(0,10);
     let eventsHtml = '<div class="resumen-events">';
     if (allEvents.length === 0) {
       eventsHtml += '<div class="resumen-empty">Todavía no marcaste ningún evento</div>';
     } else {
       allEvents.forEach(ev => {
         const parts = ev.key.split('-');
-        const dateStr = `${parts[2]}/${parts[1]}/${parts[0]}`;
-        eventsHtml += `<div class="resumen-event-item">
+        const dateStr = parts[2]+'/'+parts[1]+'/'+parts[0];
+        const isFuture = ev.key > nowKey2;
+        const links = ev.links || [];
+        const linksHtml = links.map(lk => `<a href="${lk.url}" target="_blank" style="display:inline-block;margin-left:4px;font-size:0.62rem;color:#0064c8;font-weight:700;text-decoration:none;background:#e8f0fe;padding:1px 5px;border-radius:5px">📎 ${lk.name}</a>`).join('');
+        eventsHtml += `<div class="resumen-event-item${isFuture ? ' futuro' : ''}" style="padding:4px 6px;margin-bottom:3px;border-radius:8px">
           <div class="rei-dot" style="background:${ev.mat.color}"></div>
           <span class="rei-date">${dateStr}</span>
           <span class="rei-tipo" style="background:${tipoColor(ev.tipo)}">${tipoLabel(ev.tipo)}</span>
           <span class="rei-mat">${ev.mat.nombre}</span>
           ${ev.reminder ? `<span class="rei-note">— ${ev.reminder}</span>` : ''}
+          ${linksHtml}
         </div>`;
       });
     }
@@ -2180,30 +2195,44 @@
 
   function renderCronoTable() {
     const tableDiv = document.getElementById('cronoTable');
+    const hoy = new Date(); hoy.setHours(0,0,0,0);
+    const todayKey = hoy.getFullYear() + '-' + String(hoy.getMonth()+1).padStart(2,'0') + '-' + String(hoy.getDate()).padStart(2,'0');
+
     let allEvents = [];
     MATERIAS.forEach(mat => {
       const ms = getMS(mat.id);
       Object.entries(ms).forEach(([k, v]) => {
-        if (v.marked && (cronoFilter === 'todos' || v.tipo === cronoFilter)) {
-          allEvents.push({ key: k, mat: mat, tipo: v.tipo, reminder: v.reminder });
+        // Solo eventos futuros (mayores a hoy)
+        if (v.marked && k > todayKey && (cronoFilter === 'todos' || v.tipo === cronoFilter)) {
+          allEvents.push({ key: k, mat: mat, tipo: v.tipo, reminder: v.reminder, links: v.links || [] });
         }
       });
     });
     allEvents.sort((a,b) => a.key.localeCompare(b.key));
 
     if (allEvents.length === 0) {
-      tableDiv.innerHTML = '<div class="crono-empty">No hay eventos para mostrar</div>';
+      tableDiv.innerHTML = '<div class="crono-empty">No hay eventos futuros para mostrar</div>';
       return;
     }
 
-    let html = '<table class="crono-table"><thead><tr><th>Fecha</th><th>Tipo</th><th>Materia</th><th>Nota</th></tr></thead><tbody>';
+    let html = '<table class="crono-table"><thead><tr><th>Fecha</th><th>Tipo</th><th>Materia</th><th>Nota / Links</th></tr></thead><tbody>';
     allEvents.forEach(ev => {
       const parts = ev.key.split('-');
       const dateStr = parts[2] + '/' + parts[1] + '/' + parts[0];
-      html += '<tr><td style="font-weight:700;white-space:nowrap">' + dateStr + '</td>';
+      // Days remaining
+      const evDate = new Date(ev.key + 'T00:00:00');
+      const diff = Math.round((evDate - hoy) / 86400000);
+      const diffLabel = diff === 1 ? 'mañana' : 'en ' + diff + ' días';
+      // Links html
+      const linksHtml = (ev.links && ev.links.length > 0)
+        ? ev.links.map(lk => '<a href="' + lk.url + '" target="_blank" style="display:inline-block;margin-top:2px;font-size:0.65rem;color:#0064c8;font-weight:700;text-decoration:none;background:#e8f0fe;padding:1px 6px;border-radius:6px">📎 ' + lk.name + '</a>').join(' ')
+        : '';
+
+      html += '<tr style="animation:blinkRed 1.4s ease-in-out infinite">';
+      html += '<td style="font-weight:700;white-space:nowrap">' + dateStr + '<br><span style="font-size:0.62rem;color:#e74c3c;font-weight:700">' + diffLabel + '</span></td>';
       html += '<td><span class="crono-tipo-pill" style="background:' + tipoColor(ev.tipo) + '">' + tipoLabel(ev.tipo) + '</span></td>';
       html += '<td><span style="color:' + ev.mat.color + ';font-weight:600">' + ev.mat.nombre + '</span></td>';
-      html += '<td style="color:#888;font-style:italic">' + (ev.reminder || '—') + '</td></tr>';
+      html += '<td style="color:#888;font-style:italic">' + (ev.reminder || '') + (linksHtml ? '<br>' + linksHtml : '') + '</td></tr>';
     });
     html += '</tbody></table>';
     tableDiv.innerHTML = html;
