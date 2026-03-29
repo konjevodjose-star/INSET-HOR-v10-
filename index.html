@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horario TSGyRE - Primer Cuatrimestre 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header .institute {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: #c07a00;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: 0.05em;
+      color: #1a1a1a;
+      line-height: 1.1;
+    }
+
+    .header .subtitle {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 0.4rem;
+      letter-spacing: 0.1em;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #d0d0d0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      background: #ffffff;
+    }
+
+    thead th {
+      background: #f5f5f5;
+      padding: 0.9rem 0.7rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: #c07a00;
+      text-align: center;
+      border-bottom: 2px solid #c07a00;
+    }
+
+    thead th:first-child {
+      color: #999;
+      font-size: 0.8rem;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #ebebeb;
+      transition: background 0.2s;
+    }
+
+    tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .hora-cell {
+      padding: 0.7rem 0.6rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #999;
+      font-weight: 500;
+      white-space: nowrap;
+      border-right: 1px solid #e0e0e0;
+      background: #f9f9f9;
+    }
+
+    td {
+      padding: 0.5rem 0.6rem;
+      text-align: center;
+      vertical-align: middle;
+      border-right: 1px solid #ebebeb;
+      font-size: 0.75rem;
+      min-width: 120px;
+    }
+
+    .cell {
+      border-radius: 8px;
+      padding: 0.5rem 0.4rem;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .cell .materia {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .cell .prof {
+      font-size: 0.65rem;
+      opacity: 0.75;
+      font-weight: 400;
+    }
+
+    .cell .extra {
+      font-size: 0.62rem;
+      margin-top: 0.2rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Colores por materia */
+    .gestion {
+      background: rgba(200, 140, 0, 0.08);
+      border: 1px solid rgba(200, 140, 0, 0.35);
+      color: #7a5200;
+    }
+
+    .liderazgo {
+      background: rgba(0, 100, 200, 0.07);
+      border: 1px solid rgba(0, 100, 200, 0.25);
+      color: #004a99;
+    }
+
+    .dispositivos {
+      background: rgba(0, 160, 90, 0.08);
+      border: 1px solid rgba(0, 160, 90, 0.3);
+      color: #005a30;
+    }
+
+    .maquinas {
+      background: rgba(200, 30, 60, 0.07);
+      border: 1px solid rgba(200, 30, 60, 0.25);
+      color: #8a0020;
+    }
+
+    .instrumentacion {
+      background: rgba(120, 60, 200, 0.07);
+      border: 1px solid rgba(120, 60, 200, 0.25);
+      color: #4a007a;
+    }
+
+    .concursada {
+      font-size: 0.6rem;
+      color: #cc2200;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .sin-prof {
+      font-size: 0.6rem;
+      color: #cc6600;
+      font-weight: 600;
+    }
+
+    .empty {
+      color: #ccc;
+      font-size: 1.2rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      color: #555;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.65rem;
+      color: #aaa;
+      letter-spacing: 0.1em;
+    }
+
+    /* ====== DARK MODE ====== */
+    body.dark {
+      background: #111317;
+      color: #e4e6ea;
+    }
+    body.dark .header h1 { color: #f0f0f0; }
+    body.dark .header .subtitle { color: #888; }
+    body.dark .table-wrapper {
+      border-color: #2d2f36;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    body.dark table { background: #1a1c22; }
+    body.dark thead th { background: #22252c; border-bottom-color: #c07a00; }
+    body.dark thead th:first-child { color: #666; }
+    body.dark tbody tr { border-bottom-color: #252830; }
+    body.dark tbody tr:hover { background: #1f2128; }
+    body.dark .hora-cell { background: #1d2028; color: #666; border-right-color: #2a2d35; }
+    body.dark td { border-right-color: #252830; }
+    body.dark .gestion  { background: rgba(200,140,0,0.13); border-color: rgba(200,140,0,0.4); color: #e0a830; }
+    body.dark .liderazgo { background: rgba(0,100,200,0.13); border-color: rgba(0,100,200,0.4); color: #5b9ef5; }
+    body.dark .dispositivos { background: rgba(0,160,90,0.12); border-color: rgba(0,160,90,0.4); color: #3dcc88; }
+    body.dark .maquinas { background: rgba(200,30,60,0.12); border-color: rgba(200,30,60,0.4); color: #f07090; }
+    body.dark .instrumentacion { background: rgba(120,60,200,0.13); border-color: rgba(120,60,200,0.4); color: #b08af0; }
+    body.dark .empty { color: #444; }
+    body.dark .legend-item { color: #888; }
+    body.dark .footer { color: #555; }
+
+    /* Dark mode toggle button */
+    .dark-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      background: #1a1a1a;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+      transition: background 0.25s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.dark .dark-toggle {
+      background: #ffd54f;
+      color: #1a1a1a;
+    }
+    .dark-toggle:hover { transform: scale(1.1); }
+  </style>
+</head>
+<body>
+
+<!-- DRIVE BAR -->
+<div id="driveBar" style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;padding:0.45rem 1.2rem;display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;background:#f0faf5;border-bottom:2px solid #c8f0e0">
+  <span id="driveStatus">â³ Iniciando Google Drive...</span>
+  <span id="driveSyncMsg" style="color:#06D6A0;margin-left:auto;font-size:0.7rem"></span>
+  <button id="driveLoginBtn" onclick="driveSignIn()" style="display:none;background:#1a1a1a;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.7rem;cursor:pointer">ðŸ”‘ Conectar Drive</button>
+  <button id="driveLogoutBtn" onclick="driveSignOut()" style="display:none;background:none;border:none;cursor:pointer;font-size:0.68rem;color:#aaa;font-weight:600">Desconectar</button>
+</div>
+
+  <div class="header">
+    <div class="institute">Instituto Superior de EnseÃ±anza TÃ©cnica â€” InSET</div>
+    <h1>Primer AÃ±o Â· Tronco ComÃºn Â· TÃ©cnicos</h1>
+    <div class="subtitle">ComisiÃ³n A Â· Primer Cuatrimestre 2025</div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>MiÃ©rcoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hora-cell">19:50<br>20:30</td>
+          <td>
+            <div class="cell gestion">
+              <div class="materia">GestiÃ³n de Calidad, Emprendimiento y ComercializaciÃ³n</div>
+              <div class="extra concursada">CONCURSADA</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell liderazgo">
+              <div class="materia">Liderazgo, MotivaciÃ³n y ComunicaciÃ³n Efectiva</div>
+              <div class="prof">Prof. Oviedo, Gabriela</div>
+              <div class="extra">3 HS ANUAL</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell dispositivos">
+              <div class="materia">Dispositivos e Instalaciones ElÃ©ctricas</div>
+              <div class="prof">Prof. Ing. Aguayo, M. JosÃ©</div>
+              <div class="extra concursada">CONCURSADA</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell instrumentacion">
+              <div class="materia">InstrumentaciÃ³n y Control de Procesos</div>
+              <div class="extra concursada">CONCURSADA</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell maquinas">
+              <div class="materia">MÃ¡quinas ElÃ©ctricas</div>
+              <div class="extra concursada">CONCURSADA</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="hora-cell">20:30<br>21:10</td>
+          <td>
+            <div class="cell gestion">
+              <div class="materia">GestiÃ³n de Calidad, Emprendimiento y ComercializaciÃ³n</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell liderazgo">
+              <div class="materia">Liderazgo, MotivaciÃ³n y ComunicaciÃ³n Efectiva</div>
+              <div class="prof">Prof. Oviedo, Gabriela</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell dispositivos">
+              <div class="materia">Dispositivos e Instalaciones ElÃ©ctricas</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell instrumentacion">
+              <div class="materia">InstrumentaciÃ³n y Control de Procesos</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell maquinas">
+              <div class="materia">MÃ¡quinas ElÃ©ctricas</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="hora-cell">21:20<br>22:00</td>
+          <td>
+            <div class="cell gestion">
+              <div class="materia">GestiÃ³n de Calidad, Emprendimiento y ComercializaciÃ³n</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell liderazgo">
+              <div class="materia">Liderazgo, MotivaciÃ³n y ComunicaciÃ³n Efectiva</div>
+              <div class="prof">Prof. Oviedo, Gabriela</div>
+            </div>
+          </td>
+          <td class="empty">â€”</td>
+          <td>
+            <div class="cell dispositivos">
+              <div class="materia">Dispositivos e Instalaciones ElÃ©ctricas</div>
+              <div class="prof">Prof. Ing. Aguayo, M. JosÃ©</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell instrumentacion">
+              <div class="materia">InstrumentaciÃ³n y Control de Procesos</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="hora-cell">22:00<br>22:40</td>
+          <td>
+            <div class="cell gestion">
+              <div class="materia">GestiÃ³n de Calidad, Emprendimiento y ComercializaciÃ³n</div>
+              <div class="extra concursada">CONCURSADA</div>
+              <div class="extra">CUATRIMESTRAL 4 hs</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell maquinas">
+              <div class="materia">MÃ¡quinas ElÃ©ctricas</div>
+              <div class="extra concursada">CONCURSADA</div>
+            </div>
+          </td>
+          <td class="empty">â€”</td>
+          <td>
+            <div class="cell dispositivos">
+              <div class="materia">Dispositivos e Instalaciones ElÃ©ctricas</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+          <td>
+            <div class="cell instrumentacion">
+              <div class="materia">InstrumentaciÃ³n y Control de Procesos</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="hora-cell">22:40<br>23:20</td>
+          <td class="empty">â€”</td>
+          <td>
+            <div class="cell maquinas">
+              <div class="materia">MÃ¡quinas ElÃ©ctricas</div>
+              <div class="extra">ANUAL 4 hs</div>
+            </div>
+          </td>
+          <td class="empty">â€”</td>
+          <td class="empty">â€”</td>
+          <td class="empty">â€”</td>
+        </tr>
+        <tr>
+          <td class="hora-cell">23:20<br>00:00</td>
+          <td class="empty">â€”</td>
+          <td class="empty">â€”</td>
+          <td class="empty">â€”</td>
+          <td class="empty">â€”</td>
+          <td class="empty">â€”</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+    <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#c08000"></div> GestiÃ³n de Calidad</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0064c8"></div> Liderazgo</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#00a05a"></div> Dispositivos e Instalaciones</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c81e3c"></div> MÃ¡quinas ElÃ©ctricas</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#783cc8"></div> InstrumentaciÃ³n y Control</div>
+  </div>
+
+
+  <!-- SECCIÃ“N CALENDARIOS -->
+  <div class="calendarios-section">
+    <h2 class="cal-title">Calendarios por Materia</h2>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <button class="toolbar-btn" onclick="toggleSection('calcSection')">&#x1F4CA; Calculadora de Notas</button>
+      <button class="toolbar-btn" onclick="toggleSection('notasSection')">&#x1F4DD; Notas Rapidas</button>
+      <button class="toolbar-btn" onclick="toggleSection('cronoSection')">&#x1F3AF; Cronograma</button>
+      <button class="toolbar-btn" onclick="toggleSection('backupSection')">&#x1F4BE; Backup JSON</button>
+      <button class="toolbar-btn primary" onclick="exportarPDF()">&#x1F4E5; Exportar PDF</button>
+    </div>
+
+    <!-- ALERTA FALTAS -->
+    <div id="faltasAlert" class="faltas-alert"></div>
+
+    <!-- CALCULADORA DE NOTAS -->
+    <div id="calcSection" class="calc-section">
+      <div class="calc-title-row">
+        <h3>Calculadora de Notas</h3>
+        <small style="font-size:0.65rem;color:#999">Promedio automatico &ge;7 Prom &middot; &ge;4 Regular</small>
+      </div>
+      <div class="calc-grid" id="calcGrid"></div>
+    </div>
+
+    <!-- NOTAS RAPIDAS -->
+    <div id="notasSection" class="notas-section">
+      <div class="calc-title-row" style="margin-bottom:0">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.08em;color:#1a1a1a">Notas Rapidas por Materia</h3>
+      </div>
+      <div class="notas-grid" id="notasGrid"></div>
+    </div>
+
+    <!-- CRONOGRAMA UNIFICADO -->
+    <div id="cronoSection" class="crono-section">
+      <div class="calc-title-row" style="margin-bottom:0">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.08em;color:#1a1a1a">Cronograma de Fechas Importantes</h3>
+      </div>
+      <div class="crono-filters" id="cronoFilters"></div>
+      <div id="cronoTable"></div>
+    </div>
+
+    <!-- BACKUP JSON -->
+    <div id="backupSection" class="backup-section">
+      <div class="calc-title-row" style="margin-bottom:0">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.08em;color:#1a1a1a">Exportar / Importar Datos</h3>
+      </div>
+      <p class="backup-info">Hace backup de todos tus eventos, notas y configuraciones. Importa para restaurar en cualquier dispositivo.</p>
+      <div class="backup-row">
+        <button class="toolbar-btn primary" onclick="exportJSON()">Descargar JSON</button>
+        <label class="toolbar-btn" style="cursor:pointer">Importar JSON
+          <input type="file" accept=".json" id="importInput" style="display:none" onchange="importJSON(event)">
+        </label>
+      </div>
+      <p class="backup-info" id="backupMsg"></p>
+    </div>
+
+    <div id="resumenGeneral" class="resumen-general"></div>
+    <div class="materias-grid" id="materiasGrid"></div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-box">
+      <h3 id="modal-title"></h3>
+      <p id="modal-date-label"></p>
+      <div class="tipo-selector">
+        <span class="tipo-label">Tipo de evento:</span>
+        <div class="tipos-btns" id="tiposBtns"></div>
+      </div>
+      <textarea id="modal-input" placeholder="Recordatorio (opcional)..." rows="2"></textarea>
+
+      <div class="links-section">
+        <span class="tipo-label">ðŸ“Ž Archivos de Drive:</span>
+        <div id="links-list"></div>
+        <div class="add-link-row">
+          <input id="link-name" type="text" placeholder="Nombre (ej: Apunte 1)" />
+          <input id="link-url" type="url" placeholder="Link de Drive..." />
+          <button class="btn-add-link" onclick="addLink()">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-unmark" onclick="unmarkDay()">ðŸ—‘ Desmarcar</button>
+        <button class="btn-cancel" onclick="closeModalDirect()">Cancelar</button>
+        <button class="btn-save" id="btnSave" onclick="saveReminder()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">TSGyRE Â· ComisiÃ³n A Â· InSET Â· 2025</div>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="dark-toggle" id="darkToggle" title="Modo nocturno">ðŸŒ™</button>
+
+<style>
+  .calendarios-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #ebebeb;
+  }
+  .cal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* RESUMEN GENERAL */
+  .resumen-general {
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .resumen-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-bottom: 0.8rem;
+  }
+  .resumen-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .stat-chip .chip-count { font-size: 1rem; font-weight: 700; }
+  .resumen-events {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  .resumen-event-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: #333;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid #eee;
+  }
+  .resumen-event-item .rei-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .resumen-event-item .rei-date { font-weight: 700; min-width: 55px; }
+  .resumen-event-item .rei-tipo {
+    font-size: 0.65rem; font-weight: 700; padding: 1px 6px;
+    border-radius: 10px; color: #fff; white-space: nowrap;
+  }
+  .resumen-event-item .rei-mat { color: #888; font-size: 0.65rem; }
+  .resumen-event-item .rei-note { color: #555; flex: 1; font-style: italic; }
+  .resumen
