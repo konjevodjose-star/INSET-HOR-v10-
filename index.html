@@ -275,180 +275,19 @@
   <button id="driveLogoutBtn" onclick="driveSignOut()" style="display:none;background:none;border:none;cursor:pointer;font-size:0.68rem;color:#aaa;font-weight:600">Desconectar</button>
 </div>
 
-  <div class="header">
-    <div class="institute">Instituto Superior de Ense&ntilde;anza T&eacute;cnica &mdash; InSET</div>
-    <h1>Primer A&ntilde;o &middot; Tronco Com&uacute;n &middot; T&eacute;cnicos</h1>
-    <div class="subtitle">Comisi&oacute;n A &middot; Primer Cuatrimestre 2025</div>
+  <div class="header" id="headerSection">
+    <div class="institute" id="headerInstitute"></div>
+    <h1 id="headerTitle"></h1>
+    <div class="subtitle" id="headerSubtitle"></div>
+    <button id="btnEditHeader" onclick="abrirEditHeader()" style="margin-top:0.5rem;background:rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.15);border-radius:8px;padding:0.25rem 0.7rem;font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;cursor:pointer;color:#555">&#9998; Editar encabezado</button>
   </div>
 
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>Lunes</th>
-          <th>Martes</th>
-          <th>Mi&eacute;rcoles</th>
-          <th>Jueves</th>
-          <th>Viernes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="hora-cell">19:50<br>20:30</td>
-          <td>
-            <div class="cell gestion">
-              <div class="materia">Gesti&oacute;n de Calidad, Emprendimiento y Comercializaci&oacute;n</div>
-              <div class="extra concursada">CONCURSADA</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell liderazgo">
-              <div class="materia">Liderazgo, Motivaci&oacute;n y Comunicaci&oacute;n Efectiva</div>
-              <div class="prof">Prof. Oviedo, Gabriela</div>
-              <div class="extra">3 HS ANUAL</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell dispositivos">
-              <div class="materia">Dispositivos e Instalaciones El&eacute;ctricas</div>
-              <div class="prof">Prof. Ing. Aguayo, M. Jos&eacute;</div>
-              <div class="extra concursada">CONCURSADA</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell instrumentacion">
-              <div class="materia">Instrumentaci&oacute;n y Control de Procesos</div>
-              <div class="extra concursada">CONCURSADA</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell maquinas">
-              <div class="materia">M&aacute;quinas El&eacute;ctricas</div>
-              <div class="extra concursada">CONCURSADA</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="hora-cell">20:30<br>21:10</td>
-          <td>
-            <div class="cell gestion">
-              <div class="materia">Gesti&oacute;n de Calidad, Emprendimiento y Comercializaci&oacute;n</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell liderazgo">
-              <div class="materia">Liderazgo, Motivaci&oacute;n y Comunicaci&oacute;n Efectiva</div>
-              <div class="prof">Prof. Oviedo, Gabriela</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell dispositivos">
-              <div class="materia">Dispositivos e Instalaciones El&eacute;ctricas</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell instrumentacion">
-              <div class="materia">Instrumentaci&oacute;n y Control de Procesos</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell maquinas">
-              <div class="materia">M&aacute;quinas El&eacute;ctricas</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="hora-cell">21:20<br>22:00</td>
-          <td>
-            <div class="cell gestion">
-              <div class="materia">Gesti&oacute;n de Calidad, Emprendimiento y Comercializaci&oacute;n</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell liderazgo">
-              <div class="materia">Liderazgo, Motivaci&oacute;n y Comunicaci&oacute;n Efectiva</div>
-              <div class="prof">Prof. Oviedo, Gabriela</div>
-            </div>
-          </td>
-          <td class="empty">&mdash;</td>
-          <td>
-            <div class="cell dispositivos">
-              <div class="materia">Dispositivos e Instalaciones El&eacute;ctricas</div>
-              <div class="prof">Prof. Ing. Aguayo, M. Jos&eacute;</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell instrumentacion">
-              <div class="materia">Instrumentaci&oacute;n y Control de Procesos</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="hora-cell">22:00<br>22:40</td>
-          <td>
-            <div class="cell gestion">
-              <div class="materia">Gesti&oacute;n de Calidad, Emprendimiento y Comercializaci&oacute;n</div>
-              <div class="extra concursada">CONCURSADA</div>
-              <div class="extra">CUATRIMESTRAL 4 hs</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell maquinas">
-              <div class="materia">M&aacute;quinas El&eacute;ctricas</div>
-              <div class="extra concursada">CONCURSADA</div>
-            </div>
-          </td>
-          <td class="empty">&mdash;</td>
-          <td>
-            <div class="cell dispositivos">
-              <div class="materia">Dispositivos e Instalaciones El&eacute;ctricas</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-          <td>
-            <div class="cell instrumentacion">
-              <div class="materia">Instrumentaci&oacute;n y Control de Procesos</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="hora-cell">22:40<br>23:20</td>
-          <td class="empty">&mdash;</td>
-          <td>
-            <div class="cell maquinas">
-              <div class="materia">M&aacute;quinas El&eacute;ctricas</div>
-              <div class="extra">ANUAL 4 hs</div>
-            </div>
-          </td>
-          <td class="empty">&mdash;</td>
-          <td class="empty">&mdash;</td>
-          <td class="empty">&mdash;</td>
-        </tr>
-        <tr>
-          <td class="hora-cell">23:20<br>00:00</td>
-          <td class="empty">&mdash;</td>
-          <td class="empty">&mdash;</td>
-          <td class="empty">&mdash;</td>
-          <td class="empty">&mdash;</td>
-          <td class="empty">&mdash;</td>
-        </tr>
-      </tbody>
-    </table>
+  <div style="display:flex;gap:0.5rem;justify-content:flex-end;margin-bottom:0.5rem;flex-wrap:wrap">
+    <button onclick="abrirEditHorario()" style="background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:0.3rem 0.8rem;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;color:#555">&#9998; Editar horario</button>
+    <button onclick="abrirEditMaterias()" style="background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:0.3rem 0.8rem;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;color:#555">&#9998; Editar materias</button>
   </div>
-
-    <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#c08000"></div> Gesti&oacute;n de Calidad</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#0064c8"></div> Liderazgo</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#00a05a"></div> Dispositivos e Instalaciones</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#c81e3c"></div> M&aacute;quinas El&eacute;ctricas</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#783cc8"></div> Instrumentaci&oacute;n y Control</div>
-  </div>
+  <div class="table-wrapper" id="horarioTableWrapper"></div>
+  <div class="legend" id="legendSection"></div>
 
 
   <!-- SECCI&Oacute;N CALENDARIOS -->
@@ -462,6 +301,17 @@
       <button class="toolbar-btn" onclick="toggleSection('cronoSection')">&#x1F3AF; Cronograma</button>
       <button class="toolbar-btn" onclick="toggleSection('backupSection')">&#x1F4BE; Backup JSON</button>
       <button class="toolbar-btn primary" onclick="exportarPDF()">&#x1F4E5; Exportar PDF</button>
+      <button class="toolbar-btn" id="btnVistaLink" onclick="generarLinkVista()" style="background:#783cc8;color:#fff;border-color:#783cc8">&#x1F440; Link de vista</button>
+    </div>
+    <!-- VISTA LINK PANEL -->
+    <div id="vistaLinkPanel" style="display:none;background:#f5f0ff;border:2px solid #c4a0ff;border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1rem">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.08em;color:#783cc8;margin-bottom:0.5rem">&#x1F440; Link de solo lectura</div>
+      <p style="font-size:0.75rem;color:#666;font-weight:600;margin-bottom:0.6rem">Compart&iacute; este link &mdash; quien lo abra ve todo tu registro pero no puede modificar nada.</p>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+        <input id="vistaLinkInput" type="text" readonly style="flex:1;min-width:200px;border:2px solid #c4a0ff;border-radius:8px;padding:0.4rem 0.6rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;background:#fff;color:#333;outline:none">
+        <button onclick="copiarLinkVista()" style="background:#783cc8;color:#fff;border:none;border-radius:8px;padding:0.4rem 0.9rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.72rem;cursor:pointer">Copiar</button>
+      </div>
+      <p id="vistaLinkMsg" style="font-size:0.7rem;color:#783cc8;font-weight:700;margin-top:0.4rem;min-height:1em"></p>
     </div>
 
     <!-- ALERTA FALTAS -->
@@ -500,10 +350,14 @@
       </div>
       <p class="backup-info">Hace backup de todos tus eventos, notas y configuraciones. Importa para restaurar en cualquier dispositivo.</p>
       <div class="backup-row">
-        <button class="toolbar-btn primary" onclick="exportJSON()">Descargar JSON</button>
-        <label class="toolbar-btn" style="cursor:pointer">Importar JSON
+        <button class="toolbar-btn primary" onclick="exportJSON()">&#x1F4BE; Backup completo</button>
+        <label class="toolbar-btn" style="cursor:pointer">&#x2B06; Importar JSON
           <input type="file" accept=".json" id="importInput" style="display:none" onchange="importJSON(event)">
         </label>
+      </div>
+      <div class="backup-row" style="margin-top:0.5rem">
+        <button class="toolbar-btn" onclick="exportarVistaCompartida()" style="background:#783cc8;color:#fff;border-color:#783cc8">&#x1F440; Vista compartida (solo lectura)</button>
+        <button class="toolbar-btn" onclick="exportarCopiaEditable()" style="background:#00a05a;color:#fff;border-color:#00a05a">&#x1F4CB; Copia editable</button>
       </div>
       <p class="backup-info" id="backupMsg"></p>
     </div>
@@ -541,7 +395,50 @@
     </div>
   </div>
 
-  <div class="footer">TSGyRE &middot; Comisi&oacute;n A &middot; InSET &middot; 2025</div>
+  <div class="footer" id="footerText">TSGyRE &middot; Comisi&oacute;n A &middot; InSET &middot; 2025</div>
+
+  <!-- MODAL: Edit Header -->
+  <div id="modalEditHeader" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="modal-box">
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;margin-bottom:1rem;color:#c07a00">&#9998; Editar Encabezado</h3>
+      <div style="display:flex;flex-direction:column;gap:0.7rem">
+        <div><label style="font-size:0.7rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.2rem">Instituci&oacute;n</label>
+          <input class="input" id="ehInstitute" placeholder="Nombre del instituto"></div>
+        <div><label style="font-size:0.7rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.2rem">T&iacute;tulo principal</label>
+          <input class="input" id="ehTitle" placeholder="Ej: Primer A&ntilde;o &middot; Tronco Com&uacute;n"></div>
+        <div><label style="font-size:0.7rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.2rem">Subt&iacute;tulo</label>
+          <input class="input" id="ehSubtitle" placeholder="Ej: Comisi&oacute;n A &middot; Primer Cuatrimestre 2025"></div>
+      </div>
+      <div style="display:flex;gap:0.5rem;justify-content:flex-end;margin-top:1rem">
+        <button class="btn-cancel" onclick="document.getElementById('modalEditHeader').classList.remove('active')">Cancelar</button>
+        <button class="btn-save" style="background:#c07a00" onclick="guardarHeader()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Edit Materias -->
+  <div id="modalEditMaterias" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="modal-box" style="width:min(95vw,500px);max-height:85vh;overflow-y:auto">
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;margin-bottom:1rem;color:#0064c8">&#9998; Editar Materias</h3>
+      <div id="materiasEditorList"></div>
+      <button onclick="agregarMateria()" style="margin-top:0.5rem;background:#0064c8;color:#fff;border:none;border-radius:10px;padding:0.45rem 1rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.75rem;cursor:pointer">+ Agregar materia</button>
+      <div style="display:flex;justify-content:flex-end;margin-top:1rem">
+        <button class="btn-cancel" onclick="document.getElementById('modalEditMaterias').classList.remove('active')">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Edit Horario -->
+  <div id="modalEditHorario" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="modal-box" style="width:min(98vw,720px);max-height:90vh;overflow-y:auto">
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;margin-bottom:1rem;color:#00a05a">&#9998; Editar Horario</h3>
+      <div id="horarioEditorBody"></div>
+      <button onclick="agregarFilaHorario()" style="margin-top:0.5rem;background:#00a05a;color:#fff;border:none;border-radius:10px;padding:0.45rem 1rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.75rem;cursor:pointer">+ Agregar franja horaria</button>
+      <div style="display:flex;justify-content:flex-end;margin-top:1rem">
+        <button class="btn-cancel" onclick="document.getElementById('modalEditHorario').classList.remove('active')">Cerrar</button>
+      </div>
+    </div>
+  </div>
 
   <!-- DARK MODE BUTTON -->
   <button class="dark-toggle" id="darkToggle" title="Modo nocturno">🌙</button>
@@ -1173,13 +1070,95 @@
 </style>
 
 <script>
-  const MATERIAS = [
-    { id: 'gestion',         nombre: 'Gestión de Calidad',               color: '#c08000', light: 'rgba(200,140,0,0.1)'  },
-    { id: 'liderazgo',       nombre: 'Liderazgo y Comunicación',         color: '#0064c8', light: 'rgba(0,100,200,0.1)'  },
-    { id: 'dispositivos',    nombre: 'Dispositivos e Instalaciones',     color: '#00a05a', light: 'rgba(0,160,90,0.1)'   },
-    { id: 'maquinas',        nombre: 'Máquinas Eléctricas',              color: '#c81e3c', light: 'rgba(200,30,60,0.1)'  },
-    { id: 'instrumentacion', nombre: 'Instrumentación y Control',        color: '#783cc8', light: 'rgba(120,60,200,0.1)' },
+  // ── Default data (used first time, then overridden by localStorage)
+  const DEFAULT_HEADER = {
+    institute: 'Instituto Superior de Enseñanza Técnica — InSET',
+    title:     'Primer Año · Tronco Común · Técnicos',
+    subtitle:  'Comisión A · Primer Cuatrimestre 2025'
+  };
+
+  const DEFAULT_MATERIAS = [
+    { id: 'gestion',         nombre: 'Gestión de Calidad',           color: '#c08000' },
+    { id: 'liderazgo',       nombre: 'Liderazgo y Comunicación',     color: '#0064c8' },
+    { id: 'dispositivos',    nombre: 'Dispositivos e Instalaciones', color: '#00a05a' },
+    { id: 'maquinas',        nombre: 'Máquinas Eléctricas',          color: '#c81e3c' },
+    { id: 'instrumentacion', nombre: 'Instrumentación y Control',    color: '#783cc8' },
   ];
+
+  // Rows: each row has a time range and 5 cells (Lun-Vie)
+  // cell: { materiaId, nombre, prof, extra, concursada, empty }
+  const DEFAULT_FILAS = [
+    { hora: '19:50 - 20:30', celdas: [
+      { materiaId:'gestion',         nombre:'Gestión de Calidad, Emprendimiento y Comercialización', extra:'CONCURSADA', concursada:true },
+      { materiaId:'liderazgo',       nombre:'Liderazgo, Motivación y Comunicación Efectiva', prof:'Prof. Oviedo, Gabriela', extra:'3 HS ANUAL' },
+      { materiaId:'dispositivos',    nombre:'Dispositivos e Instalaciones Eléctricas', prof:'Prof. Ing. Aguayo, M. José', extra:'CONCURSADA', concursada:true },
+      { materiaId:'instrumentacion', nombre:'Instrumentación y Control de Procesos', extra:'CONCURSADA', concursada:true },
+      { materiaId:'maquinas',        nombre:'Máquinas Eléctricas', extra:'CONCURSADA', concursada:true },
+    ]},
+    { hora: '20:30 - 21:10', celdas: [
+      { materiaId:'gestion',         nombre:'Gestión de Calidad, Emprendimiento y Comercialización' },
+      { materiaId:'liderazgo',       nombre:'Liderazgo, Motivación y Comunicación Efectiva', prof:'Prof. Oviedo, Gabriela' },
+      { materiaId:'dispositivos',    nombre:'Dispositivos e Instalaciones Eléctricas', extra:'ANUAL 4 hs' },
+      { materiaId:'instrumentacion', nombre:'Instrumentación y Control de Procesos', extra:'ANUAL 4 hs' },
+      { materiaId:'maquinas',        nombre:'Máquinas Eléctricas', extra:'ANUAL 4 hs' },
+    ]},
+    { hora: '21:20 - 22:00', celdas: [
+      { materiaId:'gestion',         nombre:'Gestión de Calidad, Emprendimiento y Comercialización' },
+      { materiaId:'liderazgo',       nombre:'Liderazgo, Motivación y Comunicación Efectiva', prof:'Prof. Oviedo, Gabriela' },
+      { empty: true },
+      { materiaId:'dispositivos',    nombre:'Dispositivos e Instalaciones Eléctricas', prof:'Prof. Ing. Aguayo, M. José', extra:'ANUAL 4 hs' },
+      { materiaId:'instrumentacion', nombre:'Instrumentación y Control de Procesos' },
+    ]},
+    { hora: '22:00 - 22:40', celdas: [
+      { materiaId:'gestion',         nombre:'Gestión de Calidad, Emprendimiento y Comercialización', extra:'CONCURSADA · CUATRIMESTRAL 4 hs', concursada:true },
+      { materiaId:'maquinas',        nombre:'Máquinas Eléctricas', extra:'CONCURSADA', concursada:true },
+      { empty: true },
+      { materiaId:'dispositivos',    nombre:'Dispositivos e Instalaciones Eléctricas', extra:'ANUAL 4 hs' },
+      { materiaId:'instrumentacion', nombre:'Instrumentación y Control de Procesos', extra:'ANUAL 4 hs' },
+    ]},
+    { hora: '22:40 - 23:20', celdas: [
+      { empty: true },
+      { materiaId:'maquinas',        nombre:'Máquinas Eléctricas', extra:'ANUAL 4 hs' },
+      { empty: true },
+      { empty: true },
+      { empty: true },
+    ]},
+    { hora: '23:20 - 00:00', celdas: [
+      { empty:true },{ empty:true },{ empty:true },{ empty:true },{ empty:true },
+    ]},
+  ];
+
+  // Helper load/save for structured data
+  function loadLS(k, def) { try { const v = localStorage.getItem('inset_'+k); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
+  function saveLS(k, v)   { try { localStorage.setItem('inset_'+k, JSON.stringify(v)); } catch(e) {} }
+
+  // Live data — loaded from localStorage or defaults
+  let headerData   = loadLS('headerData',   DEFAULT_HEADER);
+  let materiasData = loadLS('materiasData', DEFAULT_MATERIAS);
+  let filasData    = loadLS('filasData',    DEFAULT_FILAS);
+
+  // Helpers
+  function getMateriaById(id) { return materiasData.find(m => m.id === id); }
+  function hexToRgba(hex, a) {
+    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    return 'rgba('+r+','+g+','+b+','+a+')';
+  }
+  function saveAll() {
+    saveLS('headerData',   headerData);
+    saveLS('materiasData', materiasData);
+    saveLS('filasData',    filasData);
+  }
+
+  // Build MATERIAS array dynamically for calendar section
+  function buildMATERIAS() {
+    return materiasData.map(m => ({
+      id:    m.id,
+      nombre:m.nombre,
+      color: m.color,
+      light: hexToRgba(m.color, 0.1)
+    }));
+  }
+  let MATERIAS = buildMATERIAS();
 
   // Promocional state per materia: null | 'no' | 'si' | 'coloquio'
   function getPromo(id) {
@@ -1733,6 +1712,304 @@
     return section;
   }
 
+  // ═══════════════════════════════════
+  //  RENDER HEADER & TABLE
+  // ═══════════════════════════════════
+  function renderHeader() {
+    document.getElementById('headerInstitute').textContent = headerData.institute || '';
+    document.getElementById('headerTitle').textContent     = headerData.title     || '';
+    document.getElementById('headerSubtitle').textContent  = headerData.subtitle  || '';
+  }
+
+  function renderTablaHorario() {
+    const wrapper = document.getElementById('horarioTableWrapper');
+    const DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+    let html = '<table><thead><tr><th>Hora</th>';
+    DIAS.forEach(d => { html += '<th>'+d+'</th>'; });
+    html += '</tr></thead><tbody>';
+
+    filasData.forEach((fila, fi) => {
+      html += '<tr><td class="hora-cell">' + fila.hora.replace(' - ','<br>') + '</td>';
+      fila.celdas.forEach((celda, ci) => {
+        if (celda.empty) {
+          html += '<td class="empty">—</td>';
+        } else {
+          const mat = getMateriaById(celda.materiaId);
+          const bg  = mat ? hexToRgba(mat.color, 0.08) : 'rgba(180,180,180,0.08)';
+          const border = mat ? hexToRgba(mat.color, 0.35) : 'rgba(180,180,180,0.35)';
+          const textColor = mat ? mat.color : '#555';
+          html += '<td><div class="cell" style="background:'+bg+';border:1px solid '+border+';color:'+textColor+'">';
+          html += '<div class="materia">'+(celda.nombre||'')+'</div>';
+          if (celda.prof)      html += '<div class="prof">'+celda.prof+'</div>';
+          if (celda.extra)     html += '<div class="extra'+(celda.concursada?' concursada':'')+'">'+celda.extra+'</div>';
+          html += '</div></td>';
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    wrapper.innerHTML = html;
+
+    // Legend
+    const legend = document.getElementById('legendSection');
+    legend.innerHTML = '';
+    materiasData.forEach(m => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = '<div class="legend-dot" style="background:'+m.color+'"></div> '+m.nombre;
+      legend.appendChild(item);
+    });
+  }
+
+  // ═══════════════════════════════════
+  //  EDIT HEADER MODAL
+  // ═══════════════════════════════════
+  function abrirEditHeader() {
+    document.getElementById('ehInstitute').value = headerData.institute || '';
+    document.getElementById('ehTitle').value     = headerData.title     || '';
+    document.getElementById('ehSubtitle').value  = headerData.subtitle  || '';
+    document.getElementById('modalEditHeader').classList.add('active');
+  }
+  function guardarHeader() {
+    headerData.institute = document.getElementById('ehInstitute').value.trim();
+    headerData.title     = document.getElementById('ehTitle').value.trim();
+    headerData.subtitle  = document.getElementById('ehSubtitle').value.trim();
+    saveAll();
+    renderHeader();
+    document.getElementById('modalEditHeader').classList.remove('active');
+  }
+
+  // ═══════════════════════════════════
+  //  EDIT MATERIAS MODAL
+  // ═══════════════════════════════════
+  const COLOR_PALETTE = ['#c08000','#0064c8','#00a05a','#c81e3c','#783cc8','#e67e22','#16a085','#c0392b','#8e44ad','#2980b9','#27ae60','#d35400'];
+
+  function abrirEditMaterias() {
+    renderMateriasEditor();
+    document.getElementById('modalEditMaterias').classList.add('active');
+  }
+
+  function renderMateriasEditor() {
+    const cont = document.getElementById('materiasEditorList');
+    cont.innerHTML = '';
+    materiasData.forEach((mat, idx) => {
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:0.5rem;background:#f9f9f9;border:1px solid #e0e0e0;border-radius:10px;padding:0.55rem 0.7rem;margin-bottom:0.45rem;flex-wrap:wrap';
+
+      // Color picker
+      const colorWrap = document.createElement('div');
+      colorWrap.style.cssText = 'position:relative;flex-shrink:0';
+      const colorBtn = document.createElement('button');
+      colorBtn.style.cssText = 'width:26px;height:26px;border-radius:50%;background:'+mat.color+';border:3px solid rgba(0,0,0,0.15);cursor:pointer';
+      const colorPop = document.createElement('div');
+      colorPop.style.cssText = 'display:none;position:absolute;top:32px;left:0;background:#fff;border:1px solid #ddd;border-radius:10px;padding:0.4rem;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.15);display:none;flex-wrap:wrap;gap:4px;width:136px';
+      colorPop.className = 'matcolor-pop';
+      COLOR_PALETTE.forEach(c => {
+        const dot = document.createElement('button');
+        dot.style.cssText = 'width:22px;height:22px;border-radius:50%;background:'+c+';border:2px solid '+(c===mat.color?'#333':'transparent')+';cursor:pointer';
+        dot.onclick = e => {
+          e.stopPropagation();
+          materiasData[idx].color = c;
+          saveAll(); colorPop.style.display='none';
+          renderMateriasEditor(); renderTablaHorario(); rebuildMATERIAS();
+        };
+        colorPop.appendChild(dot);
+      });
+      colorBtn.onclick = e => { e.stopPropagation(); const v=colorPop.style.display==='flex'; document.querySelectorAll('.matcolor-pop').forEach(p=>p.style.display='none'); colorPop.style.display=v?'none':'flex'; };
+      colorWrap.appendChild(colorBtn); colorWrap.appendChild(colorPop);
+      row.appendChild(colorWrap);
+
+      // Name input
+      const nameInp = document.createElement('input');
+      nameInp.value = mat.nombre;
+      nameInp.style.cssText = 'flex:1;min-width:120px;border:1px solid #ddd;border-radius:7px;padding:0.3rem 0.5rem;font-family:"DM Sans",sans-serif;font-size:0.78rem;font-weight:600;outline:none';
+      nameInp.onchange = () => { materiasData[idx].nombre = nameInp.value.trim(); saveAll(); renderTablaHorario(); rebuildMATERIAS(); };
+      row.appendChild(nameInp);
+
+      // Delete button
+      const delBtn = document.createElement('button');
+      delBtn.textContent = '✕';
+      delBtn.style.cssText = 'background:none;border:1px solid #ffcdd2;border-radius:7px;color:#e53935;cursor:pointer;padding:0.25rem 0.5rem;font-size:0.75rem;flex-shrink:0';
+      delBtn.onclick = () => {
+        if (!confirm('¿Eliminar esta materia? Los calendarios asociados se conservan.')) return;
+        materiasData.splice(idx,1);
+        saveAll(); renderMateriasEditor(); renderTablaHorario(); rebuildMATERIAS();
+        document.getElementById('materiasGrid').innerHTML = ''; initCards();
+      };
+      row.appendChild(delBtn);
+      cont.appendChild(row);
+    });
+  }
+
+  function agregarMateria() {
+    const newId = 'mat_' + Date.now().toString(36);
+    materiasData.push({ id: newId, nombre: 'Nueva Materia', color: '#888888' });
+    saveAll(); renderMateriasEditor(); renderTablaHorario(); rebuildMATERIAS();
+    document.getElementById('materiasGrid').innerHTML = ''; initCards();
+  }
+
+  function rebuildMATERIAS() {
+    MATERIAS = buildMATERIAS();
+  }
+
+  // ═══════════════════════════════════
+  //  EDIT HORARIO MODAL (cells)
+  // ═══════════════════════════════════
+  function abrirEditHorario() {
+    renderHorarioEditor();
+    document.getElementById('modalEditHorario').classList.add('active');
+  }
+
+  function renderHorarioEditor() {
+    const cont = document.getElementById('horarioEditorBody');
+    cont.innerHTML = '';
+    const DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+
+    filasData.forEach((fila, fi) => {
+      const filaDiv = document.createElement('div');
+      filaDiv.style.cssText = 'background:#f9f9f9;border:1px solid #e0e0e0;border-radius:12px;padding:0.7rem;margin-bottom:0.8rem';
+
+      // Hora row
+      const horaRow = document.createElement('div');
+      horaRow.style.cssText = 'display:flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;flex-wrap:wrap';
+      const horaLabel = document.createElement('span');
+      horaLabel.style.cssText = 'font-size:0.7rem;font-weight:800;color:#555;min-width:70px';
+      horaLabel.textContent = 'Horario:';
+      const horaInp = document.createElement('input');
+      horaInp.value = fila.hora;
+      horaInp.style.cssText = 'border:1px solid #ddd;border-radius:7px;padding:0.25rem 0.5rem;font-family:"DM Sans",sans-serif;font-size:0.78rem;font-weight:600;outline:none;width:140px';
+      horaInp.onchange = () => { filasData[fi].hora = horaInp.value.trim(); saveAll(); renderTablaHorario(); };
+      const delFilaBtn = document.createElement('button');
+      delFilaBtn.textContent = '🗑 Eliminar fila';
+      delFilaBtn.style.cssText = 'background:none;border:1px solid #ffcdd2;border-radius:7px;color:#e53935;cursor:pointer;padding:0.2rem 0.6rem;font-size:0.68rem;font-weight:700;margin-left:auto';
+      delFilaBtn.onclick = () => { if(!confirm('¿Eliminar esta fila?')) return; filasData.splice(fi,1); saveAll(); renderTablaHorario(); renderHorarioEditor(); };
+      horaRow.appendChild(horaLabel); horaRow.appendChild(horaInp); horaRow.appendChild(delFilaBtn);
+      filaDiv.appendChild(horaRow);
+
+      // Cells grid
+      const cellsGrid = document.createElement('div');
+      cellsGrid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.5rem';
+
+      fila.celdas.forEach((celda, ci) => {
+        const celdaDiv = document.createElement('div');
+        celdaDiv.style.cssText = 'background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:0.5rem';
+
+        const diaLabel = document.createElement('div');
+        diaLabel.style.cssText = 'font-size:0.65rem;font-weight:800;color:#c07a00;margin-bottom:0.4rem';
+        diaLabel.textContent = DIAS[ci];
+        celdaDiv.appendChild(diaLabel);
+
+        // Empty toggle
+        const emptyRow = document.createElement('label');
+        emptyRow.style.cssText = 'display:flex;align-items:center;gap:0.3rem;font-size:0.68rem;font-weight:600;color:#888;margin-bottom:0.4rem;cursor:pointer';
+        const emptyChk = document.createElement('input');
+        emptyChk.type = 'checkbox'; emptyChk.checked = !!celda.empty;
+        emptyChk.onchange = () => {
+          filasData[fi].celdas[ci].empty = emptyChk.checked;
+          saveAll(); renderTablaHorario(); renderHorarioEditor();
+        };
+        emptyRow.appendChild(emptyChk); emptyRow.appendChild(document.createTextNode('Vacío (—)'));
+        celdaDiv.appendChild(emptyRow);
+
+        if (!celda.empty) {
+          // Materia select
+          const matSel = document.createElement('select');
+          matSel.style.cssText = 'width:100%;border:1px solid #ddd;border-radius:7px;padding:0.25rem;font-family:"DM Sans",sans-serif;font-size:0.72rem;font-weight:600;outline:none;margin-bottom:0.3rem';
+          materiasData.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = m.id; opt.textContent = m.nombre;
+            if (m.id === celda.materiaId) opt.selected = true;
+            matSel.appendChild(opt);
+          });
+          matSel.onchange = () => { filasData[fi].celdas[ci].materiaId = matSel.value; saveAll(); renderTablaHorario(); };
+          celdaDiv.appendChild(matSel);
+
+          // Nombre
+          const nomInp = document.createElement('input');
+          nomInp.placeholder = 'Nombre largo de la materia';
+          nomInp.value = celda.nombre || '';
+          nomInp.style.cssText = 'width:100%;border:1px solid #ddd;border-radius:7px;padding:0.25rem 0.4rem;font-family:"DM Sans",sans-serif;font-size:0.7rem;outline:none;margin-bottom:0.25rem';
+          nomInp.onchange = () => { filasData[fi].celdas[ci].nombre = nomInp.value.trim(); saveAll(); renderTablaHorario(); };
+          celdaDiv.appendChild(nomInp);
+
+          // Prof
+          const profInp = document.createElement('input');
+          profInp.placeholder = 'Profesor (opcional)';
+          profInp.value = celda.prof || '';
+          profInp.style.cssText = 'width:100%;border:1px solid #ddd;border-radius:7px;padding:0.25rem 0.4rem;font-family:"DM Sans",sans-serif;font-size:0.7rem;outline:none;margin-bottom:0.25rem';
+          profInp.onchange = () => { filasData[fi].celdas[ci].prof = profInp.value.trim(); saveAll(); renderTablaHorario(); };
+          celdaDiv.appendChild(profInp);
+
+          // Extra
+          const extraInp = document.createElement('input');
+          extraInp.placeholder = 'Etiqueta (ej: ANUAL 4 hs)';
+          extraInp.value = celda.extra || '';
+          extraInp.style.cssText = 'width:100%;border:1px solid #ddd;border-radius:7px;padding:0.25rem 0.4rem;font-family:"DM Sans",sans-serif;font-size:0.7rem;outline:none;margin-bottom:0.25rem';
+          extraInp.onchange = () => { filasData[fi].celdas[ci].extra = extraInp.value.trim(); saveAll(); renderTablaHorario(); };
+          celdaDiv.appendChild(extraInp);
+
+          // Concursada
+          const concLabel = document.createElement('label');
+          concLabel.style.cssText = 'display:flex;align-items:center;gap:0.3rem;font-size:0.68rem;font-weight:600;color:#cc2200;cursor:pointer';
+          const concChk = document.createElement('input');
+          concChk.type = 'checkbox'; concChk.checked = !!celda.concursada;
+          concChk.onchange = () => { filasData[fi].celdas[ci].concursada = concChk.checked; saveAll(); renderTablaHorario(); };
+          concLabel.appendChild(concChk); concLabel.appendChild(document.createTextNode('Concursada'));
+          celdaDiv.appendChild(concLabel);
+        }
+        cellsGrid.appendChild(celdaDiv);
+      });
+      filaDiv.appendChild(cellsGrid);
+      cont.appendChild(filaDiv);
+    });
+  }
+
+  function agregarFilaHorario() {
+    filasData.push({ hora: '00:00 - 00:00', celdas: [{empty:true},{empty:true},{empty:true},{empty:true},{empty:true}] });
+    saveAll(); renderTablaHorario(); renderHorarioEditor();
+  }
+
+  // ═══════════════════════════════════
+  //  EXPORT: vista compartida & editable
+  // ═══════════════════════════════════
+  function exportarVistaCompartida() {
+    const data = _buildExportData();
+    data._modoVista = true;
+    _descargarJSON(data, 'horario-vista-' + new Date().toISOString().slice(0,10) + '.json');
+    document.getElementById('backupMsg').textContent = '✓ Archivo de solo lectura descargado. Mandalo por WhatsApp.';
+  }
+
+  function exportarCopiaEditable() {
+    const data = _buildExportData();
+    data._modoVista = false;
+    _descargarJSON(data, 'horario-copia-' + new Date().toISOString().slice(0,10) + '.json');
+    document.getElementById('backupMsg').textContent = '✓ Copia editable descargada.';
+  }
+
+  function _buildExportData() {
+    return {
+      horario_state2:   JSON.parse(localStorage.getItem('horario_state2') || '{}'),
+      horario_darkmode: localStorage.getItem('horario_darkmode') || '0',
+      headerData,
+      materiasData,
+      filasData,
+      notasRapidas:   Object.fromEntries(['gestion','liderazgo','dispositivos','maquinas','instrumentacion'].concat(materiasData.map(m=>m.id)).filter((v,i,a)=>a.indexOf(v)===i).map(id=>[id, localStorage.getItem('nota_rapida_'+id)||''])),
+      notasParciales: Object.fromEntries(materiasData.map(m=>[m.id, JSON.parse(localStorage.getItem('notas_parc_'+m.id)||'{}')])),
+      docentes:       Object.fromEntries(materiasData.map(m=>[m.id, JSON.parse(localStorage.getItem('docente_'+m.id)||'{}')])),
+      savedAt: new Date().toISOString()
+    };
+  }
+
+  function _descargarJSON(data, filename) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download=filename; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ── Init render
+  renderHeader();
+  renderTablaHorario();
   initCards();
 
   // ===== TOOLBAR TOGGLE =====
@@ -2013,6 +2290,90 @@
   checkFaltasAlert();
 
   // ═══════════════════════════════════
+  //  MODO VISTA (solo lectura)
+  // ═══════════════════════════════════
+  const VIEW_TOKEN_KEY = 'inset_view_token';
+
+  function generarLinkVista() {
+    // Generate or reuse a stable token tied to this user
+    let token = localStorage.getItem(VIEW_TOKEN_KEY);
+    if (!token) {
+      token = Math.random().toString(36).slice(2) + Date.now().toString(36);
+      localStorage.setItem(VIEW_TOKEN_KEY, token);
+    }
+    // Save current state snapshot to a publicly readable key in localStorage
+    // keyed by token — viewer will load this
+    const snapshot = {
+      state:        JSON.parse(localStorage.getItem('horario_state2') || '{}'),
+      notasRapidas: {},
+      notasParciales: {},
+      savedAt:      new Date().toISOString()
+    };
+    ['gestion','liderazgo','dispositivos','maquinas','instrumentacion'].forEach(id => {
+      snapshot.notasRapidas[id]   = localStorage.getItem('nota_rapida_' + id) || '';
+      snapshot.notasParciales[id] = JSON.parse(localStorage.getItem('notas_parc_' + id) || '{}');
+    });
+    localStorage.setItem('inset_snapshot_' + token, JSON.stringify(snapshot));
+
+    const url = window.location.href.split('?')[0] + '?modo=vista&uid=' + token;
+    document.getElementById('vistaLinkInput').value = url;
+    document.getElementById('vistaLinkPanel').style.display = 'block';
+  }
+
+  function copiarLinkVista() {
+    const input = document.getElementById('vistaLinkInput');
+    input.select();
+    try {
+      document.execCommand('copy');
+      document.getElementById('vistaLinkMsg').textContent = '✓ Link copiado. Mandalo por WhatsApp!';
+    } catch(e) {
+      // Mobile fallback
+      navigator.clipboard && navigator.clipboard.writeText(input.value);
+      document.getElementById('vistaLinkMsg').textContent = '✓ Link copiado!';
+    }
+    setTimeout(() => { document.getElementById('vistaLinkMsg').textContent = ''; }, 3000);
+  }
+
+  function checkModoVista() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('modo') !== 'vista') return;
+    const uid = params.get('uid');
+    if (!uid) return;
+
+    // Load snapshot from localStorage (same browser) or from Drive public share
+    const raw = localStorage.getItem('inset_snapshot_' + uid);
+    if (raw) {
+      try {
+        const snap = JSON.parse(raw);
+        if (snap.state) {
+          state = snap.state;
+          // Reload cards with snapshot data
+          document.getElementById('materiasGrid').innerHTML = '';
+          initCards();
+        }
+        if (snap.notasRapidas) {
+          Object.entries(snap.notasRapidas).forEach(([k,v]) => {
+            if (v) localStorage.setItem('nota_rapida_' + k, v);
+          });
+        }
+      } catch(e) {}
+    }
+
+    // Apply read-only UI
+    document.body.classList.add('modo-vista');
+
+    // Add banner
+    const banner = document.createElement('div');
+    banner.className = 'vista-banner';
+    banner.textContent = '👁 MODO VISTA — Solo lectura · Los links se pueden abrir pero no podés modificar nada';
+    document.body.prepend(banner);
+    document.body.style.paddingTop = '2.5rem';
+
+    // Disable modal opening
+    window._originalInitCards = initCards;
+  }
+
+  // ═══════════════════════════════════
   //  GOOGLE DRIVE SYNC
   // ═══════════════════════════════════
   const CLIENT_ID = '613503774671-a8ojpv153rifnjvhaqcltlh60os5potp.apps.googleusercontent.com';
@@ -2173,11 +2534,11 @@
     }
   }
 
-  window.addEventListener('load', function() { setTimeout(initDrive, 800); });
+  window.addEventListener('load', function() {
+    checkModoVista();
+    setTimeout(initDrive, 800);
+  });
 
 </script>
 </body>
 </html>
-
-
-  
