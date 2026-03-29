@@ -269,9 +269,9 @@
 
 <!-- DRIVE BAR -->
 <div id="driveBar" style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;padding:0.45rem 1.2rem;display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;background:#f0faf5;border-bottom:2px solid #c8f0e0">
-  <span id="driveStatus">&#9203; Iniciando Google Drive...</span>
+  <span id="driveStatus">⏳ Iniciando Google Drive...</span>
   <span id="driveSyncMsg" style="color:#06D6A0;margin-left:auto;font-size:0.7rem"></span>
-  <button id="driveLoginBtn" onclick="driveSignIn()" style="display:none;background:#1a1a1a;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.7rem;cursor:pointer">&#128273; Conectar Drive</button>
+  <button id="driveLoginBtn" onclick="driveSignIn()" style="display:none;background:#1a1a1a;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.7rem;cursor:pointer">🔑 Conectar Drive</button>
   <button id="driveLogoutBtn" onclick="driveSignOut()" style="display:none;background:none;border:none;cursor:pointer;font-size:0.68rem;color:#aaa;font-weight:600">Desconectar</button>
 </div>
 
@@ -524,7 +524,7 @@
       <textarea id="modal-input" placeholder="Recordatorio (opcional)..." rows="2"></textarea>
 
       <div class="links-section">
-        <span class="tipo-label">&#128206; Archivos de Drive:</span>
+        <span class="tipo-label">📎 Archivos de Drive:</span>
         <div id="links-list"></div>
         <div class="add-link-row">
           <input id="link-name" type="text" placeholder="Nombre (ej: Apunte 1)" />
@@ -534,7 +534,7 @@
       </div>
 
       <div class="modal-actions">
-        <button class="btn-unmark" onclick="unmarkDay()">&#128465; Desmarcar</button>
+        <button class="btn-unmark" onclick="unmarkDay()">🗑 Desmarcar</button>
         <button class="btn-cancel" onclick="closeModalDirect()">Cancelar</button>
         <button class="btn-save" id="btnSave" onclick="saveReminder()">Guardar</button>
       </div>
@@ -544,7 +544,7 @@
   <div class="footer">TSGyRE &middot; Comisi&oacute;n A &middot; InSET &middot; 2025</div>
 
   <!-- DARK MODE BUTTON -->
-  <button class="dark-toggle" id="darkToggle" title="Modo nocturno">&#127769;</button>
+  <button class="dark-toggle" id="darkToggle" title="Modo nocturno">🌙</button>
 
 <style>
   .calendarios-section {
@@ -1174,11 +1174,11 @@
 
 <script>
   const MATERIAS = [
-    { id: 'gestion',         nombre: 'Gesti&#243;n de Calidad',               color: '#c08000', light: 'rgba(200,140,0,0.1)'  },
-    { id: 'liderazgo',       nombre: 'Liderazgo y Comunicaci&#243;n',         color: '#0064c8', light: 'rgba(0,100,200,0.1)'  },
+    { id: 'gestion',         nombre: 'Gestión de Calidad',               color: '#c08000', light: 'rgba(200,140,0,0.1)'  },
+    { id: 'liderazgo',       nombre: 'Liderazgo y Comunicación',         color: '#0064c8', light: 'rgba(0,100,200,0.1)'  },
     { id: 'dispositivos',    nombre: 'Dispositivos e Instalaciones',     color: '#00a05a', light: 'rgba(0,160,90,0.1)'   },
-    { id: 'maquinas',        nombre: 'M&#225;quinas El&#233;ctricas',              color: '#c81e3c', light: 'rgba(200,30,60,0.1)'  },
-    { id: 'instrumentacion', nombre: 'Instrumentaci&#243;n y Control',        color: '#783cc8', light: 'rgba(120,60,200,0.1)' },
+    { id: 'maquinas',        nombre: 'Máquinas Eléctricas',              color: '#c81e3c', light: 'rgba(200,30,60,0.1)'  },
+    { id: 'instrumentacion', nombre: 'Instrumentación y Control',        color: '#783cc8', light: 'rgba(120,60,200,0.1)' },
   ];
 
   // Promocional state per materia: null | 'no' | 'si' | 'coloquio'
@@ -1200,7 +1200,7 @@
     { id: 'otro',         label: 'Otro',         color: '#7f8c8d' },
   ];
 
-  const DAYS  = ['Dom','Lun','Mar','Mi&#233;','Jue','Vie','S&#225;b'];
+  const DAYS  = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
   const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
   let state = {};
@@ -1283,7 +1283,7 @@
       <span class="promo-label">Promocional:</span>
       <div class="promo-btns">
         <button class="promo-btn" data-val="no"   data-id="${mat.id}" style="--pc:#e74c3c">No</button>
-        <button class="promo-btn" data-val="si"   data-id="${mat.id}" style="--pc:#27ae60">S&#237;</button>
+        <button class="promo-btn" data-val="si"   data-id="${mat.id}" style="--pc:#27ae60">Sí</button>
         <button class="promo-btn" data-val="coloquio" data-id="${mat.id}" style="--pc:#e67e22">Con Coloquio</button>
       </div>
     `;
@@ -1306,12 +1306,12 @@
       const faltas = countFaltas(mat.id);
       const total  = countAll(mat.id);
       const promo  = getPromo(mat.id);
-      const promoMap = { si: '&#10003; Promocional', coloquio: '&#10003; Con Coloquio', no: '&#10007; No Promocional' };
+      const promoMap = { si: '✓ Promocional', coloquio: '✓ Con Coloquio', no: '✗ No Promocional' };
       const promoColor = { si: '#27ae60', coloquio: '#e67e22', no: '#e74c3c' };
       statsDiv.innerHTML = `
         ${promo ? `<span class="hstat promo-badge" style="background:${promoColor[promo]}20;color:${promoColor[promo]}">${promoMap[promo]}</span>` : ''}
         <span class="hstat">${total} evento${total!==1?'s':''}</span>
-        ${faltas > 0 ? `<span class="hstat faltas">&#9888; ${faltas} falta${faltas!==1?'s':''}</span>` : ''}
+        ${faltas > 0 ? `<span class="hstat faltas">⚠ ${faltas} falta${faltas!==1?'s':''}</span>` : ''}
       `;
     }
 
@@ -1323,13 +1323,13 @@
       const nav = document.createElement('div');
       nav.className = 'cal-nav';
       const btnPrev = document.createElement('button');
-      btnPrev.textContent = '&#8249;';
+      btnPrev.textContent = '‹';
       btnPrev.onclick = () => { month--; if(month<0){month=11;year--;} render(); };
       const monthLabel = document.createElement('span');
       monthLabel.className = 'cal-month-label';
       monthLabel.textContent = `${MONTHS[month]} ${year}`;
       const btnNext = document.createElement('button');
-      btnNext.textContent = '&#8250;';
+      btnNext.textContent = '›';
       btnNext.onclick = () => { month++; if(month>11){month=0;year++;} render(); };
       nav.appendChild(btnPrev);
       nav.appendChild(monthLabel);
@@ -1413,7 +1413,7 @@
             <span class="r-date">${parts[2]}/${parts[1]}</span>
             <span class="r-tipo" style="background:${tipoColor(v.tipo)}">${tipoLabel(v.tipo)}</span>
             <span class="r-text">${v.reminder || ''}</span>
-            <button class="r-del" title="Eliminar">&#10005;</button>
+            <button class="r-del" title="Eliminar">✕</button>
           `;
           item.querySelector('.r-del').onclick = (e) => {
             e.stopPropagation();
@@ -1442,7 +1442,7 @@
     selectedTipo = (getMS(mat.id)[key] && getMS(mat.id)[key].tipo) || 'clase';
     document.getElementById('modal-title').textContent = mat.nombre;
     document.getElementById('modal-title').style.color = mat.color;
-    document.getElementById('modal-date-label').textContent = `&#128197; ${day} de ${MONTHS[month]} de ${year}`;
+    document.getElementById('modal-date-label').textContent = `📅 ${day} de ${MONTHS[month]} de ${year}`;
     document.getElementById('modal-input').value = (getMS(mat.id)[key] && getMS(mat.id)[key].reminder) || '';
     document.getElementById('btnSave').style.background = mat.color;
 
@@ -1462,8 +1462,53 @@
       btns.appendChild(b);
     });
 
+    // Reset link inputs and render links for THIS specific date+materia
+    document.getElementById('link-name').value = '';
+    document.getElementById('link-url').value = '';
+    renderLinksList(mat.id, key);
+
     document.getElementById('modal').classList.add('active');
     setTimeout(() => document.getElementById('modal-input').focus(), 50);
+  }
+
+  function renderLinksList(matId, key) {
+    const list = document.getElementById('links-list');
+    list.innerHTML = '';
+    const ms = getMS(matId);
+    const links = (ms[key] && ms[key].links) || [];
+    links.forEach((lk, i) => {
+      const item = document.createElement('div');
+      item.style.cssText = 'display:flex;align-items:center;gap:0.4rem;margin-bottom:0.3rem;font-size:0.75rem';
+      item.innerHTML = `
+        <a href="${lk.url}" target="_blank" style="flex:1;color:#0064c8;text-decoration:none;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${lk.name}</a>
+        <button onclick="removeLink('${matId}','${key}',${i})" style="background:none;border:none;cursor:pointer;color:#ccc;font-size:0.8rem;flex-shrink:0">✕</button>
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  function addLink() {
+    if (!modalContext) return;
+    const { mat, key } = modalContext;
+    const name = document.getElementById('link-name').value.trim();
+    const url  = document.getElementById('link-url').value.trim();
+    if (!url) return;
+    const ms = getMS(mat.id);
+    if (!ms[key]) ms[key] = { marked: true };
+    if (!ms[key].links) ms[key].links = [];
+    ms[key].links.push({ name: name || url, url });
+    saveState();
+    document.getElementById('link-name').value = '';
+    document.getElementById('link-url').value = '';
+    renderLinksList(mat.id, key);
+  }
+
+  function removeLink(matId, key, idx) {
+    const ms = getMS(matId);
+    if (!ms[key] || !ms[key].links) return;
+    ms[key].links.splice(idx, 1);
+    saveState();
+    renderLinksList(matId, key);
   }
 
   function closeModal(e) {
@@ -1482,6 +1527,7 @@
     if (!ms[key]) ms[key] = { marked: true };
     ms[key].tipo = selectedTipo;
     ms[key].reminder = document.getElementById('modal-input').value.trim();
+    // links are already saved inline via addLink/removeLink
     saveState();
     closeModalDirect();
     renderFn();
@@ -1503,7 +1549,7 @@
     const el = document.getElementById('resumenGeneral');
 
     // Stats chips
-    let statsHtml = '<div class="resumen-title">&#128202; Resumen General</div><div class="resumen-stats">';
+    let statsHtml = '<div class="resumen-title">📊 Resumen General</div><div class="resumen-stats">';
     MATERIAS.forEach(mat => {
       const faltas = countFaltas(mat.id);
       const total = countAll(mat.id);
@@ -1511,7 +1557,7 @@
         statsHtml += `<div class="stat-chip" style="background:${mat.color}">
           <span>${mat.nombre.split(' ')[0]}</span>
           <span class="chip-count">${total}</span>
-          ${faltas > 0 ? `<span>&#183; &#9888;${faltas}F</span>` : ''}
+          ${faltas > 0 ? `<span>· ⚠${faltas}F</span>` : ''}
         </div>`;
       }
     });
@@ -1529,7 +1575,7 @@
 
     let eventsHtml = '<div class="resumen-events">';
     if (allEvents.length === 0) {
-      eventsHtml += '<div class="resumen-empty">Todav&#237;a no marcaste ning&#250;n evento</div>';
+      eventsHtml += '<div class="resumen-empty">Todavía no marcaste ningún evento</div>';
     } else {
       allEvents.forEach(ev => {
         const parts = ev.key.split('-');
@@ -1539,7 +1585,7 @@
           <span class="rei-date">${dateStr}</span>
           <span class="rei-tipo" style="background:${tipoColor(ev.tipo)}">${tipoLabel(ev.tipo)}</span>
           <span class="rei-mat">${ev.mat.nombre}</span>
-          ${ev.reminder ? `<span class="rei-note">&#8212; ${ev.reminder}</span>` : ''}
+          ${ev.reminder ? `<span class="rei-note">— ${ev.reminder}</span>` : ''}
         </div>`;
       });
     }
@@ -1560,10 +1606,10 @@
   (function() {
     const btn = document.getElementById('darkToggle');
     const saved = localStorage.getItem('horario_darkmode');
-    if (saved === '1') { document.body.classList.add('dark'); btn.textContent = '&#9728;&#65039;'; }
+    if (saved === '1') { document.body.classList.add('dark'); btn.textContent = '☀️'; }
     btn.addEventListener('click', () => {
       const isDark = document.body.classList.toggle('dark');
-      btn.textContent = isDark ? '&#9728;&#65039;' : '&#127769;';
+      btn.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('horario_darkmode', isDark ? '1' : '0');
     });
   })();
@@ -1583,17 +1629,17 @@
 
     const toggle = document.createElement('button');
     toggle.className = 'docente-toggle';
-    toggle.innerHTML = `<span class="dt-arrow">&#9654;</span> &#128104;&#8205;&#127979; Datos del docente`;
+    toggle.innerHTML = `<span class="dt-arrow">▶</span> 👨‍🏫 Datos del docente`;
     section.appendChild(toggle);
 
     const fields = document.createElement('div');
     fields.className = 'docente-fields hidden';
 
     const fieldDefs = [
-      { key: 'nombre',  icon: '&#128100;', placeholder: 'Nombre del docente',   type: 'text',  label: 'Nombre' },
-      { key: 'email',   icon: '&#128231;', placeholder: 'Correo electr&#243;nico',    type: 'email', label: 'Email'  },
-      { key: 'celular', icon: '&#128241;', placeholder: 'Celular / WhatsApp',    type: 'tel',   label: 'Celular'},
-      { key: 'link',    icon: '&#128279;', placeholder: 'Link (aula, drive...)', type: 'url',   label: 'Link'   },
+      { key: 'nombre',  icon: '👤', placeholder: 'Nombre del docente',   type: 'text',  label: 'Nombre' },
+      { key: 'email',   icon: '📧', placeholder: 'Correo electrónico',    type: 'email', label: 'Email'  },
+      { key: 'celular', icon: '📱', placeholder: 'Celular / WhatsApp',    type: 'tel',   label: 'Celular'},
+      { key: 'link',    icon: '🔗', placeholder: 'Link (aula, drive...)', type: 'url',   label: 'Link'   },
     ];
 
     const inputs = {};
@@ -1666,7 +1712,7 @@
     saveBtn.textContent = 'Guardar';
     const savedMsg = document.createElement('span');
     savedMsg.className = 'docente-saved-msg';
-    savedMsg.textContent = '&#10003; Guardado';
+    savedMsg.textContent = '✓ Guardado';
     saveBtn.addEventListener('click', () => {
       const data = {};
       fieldDefs.forEach(f => { data[f.key] = inputs[f.key].value.trim(); });
@@ -1738,7 +1784,7 @@
         label.textContent = lbl;
         const inp = document.createElement('input');
         inp.type = 'number'; inp.min = '0'; inp.max = '10'; inp.step = '0.1';
-        inp.placeholder = '&#8212;';
+        inp.placeholder = '—';
         inp.value = (saved[i] !== undefined && saved[i] !== '') ? saved[i] : '';
         inputs.push(inp);
         inp.addEventListener('input', () => recalc());
@@ -1758,13 +1804,13 @@
         }
         const prom = vals.reduce((a, b) => a + parseFloat(b), 0) / vals.length;
         if (prom >= 7) {
-          resultDiv.textContent = 'Promedio: ' + prom.toFixed(2) + ' &#8212; PROMOCIONAL';
+          resultDiv.textContent = 'Promedio: ' + prom.toFixed(2) + ' — PROMOCIONAL';
           resultDiv.className = 'calc-result aprobado';
         } else if (prom >= 4) {
-          resultDiv.textContent = 'Promedio: ' + prom.toFixed(2) + ' &#8212; Regular';
+          resultDiv.textContent = 'Promedio: ' + prom.toFixed(2) + ' — Regular';
           resultDiv.className = 'calc-result regular';
         } else {
-          resultDiv.textContent = 'Promedio: ' + prom.toFixed(2) + ' &#8212; Desaprobado';
+          resultDiv.textContent = 'Promedio: ' + prom.toFixed(2) + ' — Desaprobado';
           resultDiv.className = 'calc-result reprobado';
         }
       }
@@ -1880,7 +1926,7 @@
       html += '<tr><td style="font-weight:700;white-space:nowrap">' + dateStr + '</td>';
       html += '<td><span class="crono-tipo-pill" style="background:' + tipoColor(ev.tipo) + '">' + tipoLabel(ev.tipo) + '</span></td>';
       html += '<td><span style="color:' + ev.mat.color + ';font-weight:600">' + ev.mat.nombre + '</span></td>';
-      html += '<td style="color:#888;font-style:italic">' + (ev.reminder || '&#8212;') + '</td></tr>';
+      html += '<td style="color:#888;font-style:italic">' + (ev.reminder || '—') + '</td></tr>';
     });
     html += '</tbody></table>';
     tableDiv.innerHTML = html;
@@ -1897,7 +1943,7 @@
       }
     });
     if (warnings.length > 0) {
-      alertEl.innerHTML = '&#9888;&#65039; <strong>Limite de faltas:</strong> ' + warnings.join(' &nbsp;&middot;&nbsp; ');
+      alertEl.innerHTML = '⚠️ <strong>Limite de faltas:</strong> ' + warnings.join(' &nbsp;&middot;&nbsp; ');
       alertEl.classList.add('show');
     } else {
       alertEl.classList.remove('show');
@@ -1966,9 +2012,9 @@
 
   checkFaltasAlert();
 
-  // &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+  // ═══════════════════════════════════
   //  GOOGLE DRIVE SYNC
-  // &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+  // ═══════════════════════════════════
   const CLIENT_ID = '613503774671-a8ojpv153rifnjvhaqcltlh60os5potp.apps.googleusercontent.com';
   const SCOPES    = 'https://www.googleapis.com/auth/drive.appdata';
   const FNAME     = 'inset-hor-backup.json';
@@ -1997,22 +2043,22 @@
     const now    = new Date().toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'});
     if (s === 'connected' || s === 'saved') {
       bar.style.background = '#f0faf5'; bar.style.borderBottomColor = '#c8f0e0';
-      status.innerHTML = '&#9729;&#65039; <span style="color:#059669">Drive conectado</span>' + (s==='saved' ? ' &#8212; guardado a las ' + now : ' &#8212; los datos se guardan autom&#225;ticamente');
+      status.innerHTML = '☁️ <span style="color:#059669">Drive conectado</span>' + (s==='saved' ? ' — guardado a las ' + now : ' — los datos se guardan automáticamente');
       loginB.style.display = 'none'; logoutB.style.display = 'inline';
     } else if (s === 'syncing') {
-      status.innerHTML = '&#128260; <span style="color:#0891b2">Guardando en Drive...</span>';
+      status.innerHTML = '🔄 <span style="color:#0891b2">Guardando en Drive...</span>';
     } else if (s === 'disconnected') {
       bar.style.background = '#fff8f0'; bar.style.borderBottomColor = '#fed7aa';
-      status.innerHTML = '&#9888;&#65039; <span style="color:#ea580c">Sin Drive</span> &#8212; datos solo en este navegador. Si borr&#225;s el cach&#233;, se pierden.';
+      status.innerHTML = '⚠️ <span style="color:#ea580c">Sin Drive</span> — datos solo en este navegador. Si borrás el caché, se pierden.';
       loginB.style.display = 'inline'; logoutB.style.display = 'none';
     } else if (s === 'restored') {
       bar.style.background = '#f0faf5'; bar.style.borderBottomColor = '#c8f0e0';
-      status.innerHTML = '&#9729;&#65039; <span style="color:#059669">Drive conectado</span> &#8212; datos restaurados desde la nube &#10003;';
+      status.innerHTML = '☁️ <span style="color:#059669">Drive conectado</span> — datos restaurados desde la nube ✓';
       loginB.style.display = 'none'; logoutB.style.display = 'inline';
       setTimeout(() => driveSetStatus('connected'), 3000);
     } else if (s === 'error') {
       bar.style.background = '#fff0f0'; bar.style.borderBottomColor = '#fecaca';
-      status.innerHTML = '&#10060; <span style="color:#dc2626">Error al guardar en Drive</span> &#8212; revis&#225; tu conexi&#243;n';
+      status.innerHTML = '❌ <span style="color:#dc2626">Error al guardar en Drive</span> — revisá tu conexión';
     }
   }
 
@@ -2132,3 +2178,6 @@
 </script>
 </body>
 </html>
+
+
+  
